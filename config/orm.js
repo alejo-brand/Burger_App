@@ -38,8 +38,8 @@ function printQuestionMarks(num) {
   };
 
   const orm = {
-      all: function(tableInput,cb){
-          let queryString = "SELECT * FROM" + tableInput + ";";
+      all: function(table,cb){
+          let queryString = "SELECT * FROM" + table + ";";
           connection.query(queryString,(err,result)=>{
               if(err){
                   throw err;
@@ -47,5 +47,14 @@ function printQuestionMarks(num) {
               cb(result);
           });
       },
+
+      insertOne:function(table,columns,values,cb){
+        let sqlString = "INSERT INTO" + table + "(" + columns.toString() + ")" + "VALUES(" + printQuestionMarks(values.length) +")";
+
+        connection.query(sqlString,values,(err,result)=>{
+            if(err) throw err;
+            cb(result);
+        });
+      }
       
-  }
+  };
