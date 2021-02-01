@@ -12,7 +12,7 @@ function printQuestionMarks(num) {
     }
   
     return arr.toString();
-}
+};
   
   // Helper function to convert object key/value pairs to SQL syntax
 function objToSql(ob) {
