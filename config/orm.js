@@ -8,14 +8,14 @@ function printQuestionMarks(num) {
     var arr = [];
   
     for (var i = 0; i < num; i++) {
-      arr.push("?");
+        arr.push("?");
     }
   
     return arr.toString();
-  }
+}
   
   // Helper function to convert object key/value pairs to SQL syntax
-  function objToSql(ob) {
+function objToSql(ob) {
     var arr = [];
   
     // loop through the keys and push the key/value as a string int arr
@@ -35,39 +35,49 @@ function printQuestionMarks(num) {
   
     // translate array of strings to a single comma-separated string
     return arr.toString();
-  };
+};
 
-  const orm = {
-      all: function(table,cb){
-          let queryString = "SELECT * FROM" + table + ";";
-          connection.query(queryString,(err,result)=>{
-              if(err){
-                  throw err;
-              }
-              cb(result);
-          });
-      },
-
-      insertOne:function(table,columns,values,cb){
-        let sqlString = "INSERT INTO" + table + "(" + columns.toString() + ")" + "VALUES(" + printQuestionMarks(values.length) +")";
-
-        connection.query(sqlString,values,(err,result)=>{
-            if(err) throw err;
+const orm = {
+    all: function(table,cb){
+        let queryString = "SELECT * FROM" + table + ";";
+        connection.query(queryString,(err,result)=>{
+            if(err){
+                throw err;
+            }
             cb(result);
         });
-      },
+    },
 
-      update:function(table,objColVal,condition,cb){
-          let sqlString = "UPDATE" + table + "SET" + objToSql(objColVal) + "WHERE" + condition;
-          
-          connection.query(sqlString,(err,res)=>{
-              if(err){
-                  throw err;
-              }
-              cb(res);
-          });
-      },
+    insertOne: function(table,columns,values,cb){
+    let sqlString = "INSERT INTO" + table + "(" + columns.toString() + ")" + "VALUES(" + printQuestionMarks(values.length) +")";
+    connection.query(sqlString,values,(err,result)=>{
+        if(err) throw err;
+            cb(result);
+        });
+    },
 
-      //Delete function is next
-      
-  };
+    update:function(table,objColVal,condition,cb){
+        let sqlString = "UPDATE" + table + "SET" + objToSql(objColVal) + "WHERE" + condition;
+        
+        connection.query(sqlString,(err,res)=>{
+            if(err){
+                throw err;
+            }
+            cb(res);
+        });
+    },
+
+
+    delete:function(table,condition,cb){
+        let sqlString = "DELETE FROM" + table + "WHERE" + condition;
+        connection.query(sqlString,(err,result)=>{
+            if(err){
+                throw err;
+            }
+            cb(result);
+        });
+    }
+
+    //Delete function is next
+};
+module.exports = orm;
