@@ -55,6 +55,19 @@ function printQuestionMarks(num) {
             if(err) throw err;
             cb(result);
         });
-      }
+      },
+
+      update:function(table,objColVal,condition,cb){
+          let sqlString = "UPDATE" + table + "SET" + objToSql(objColVal) + "WHERE" + condition;
+          
+          connection.query(sqlString,(err,res)=>{
+              if(err){
+                  throw err;
+              }
+              cb(res);
+          });
+      },
+
+      //Delete function is next
       
   };
