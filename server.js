@@ -1,9 +1,9 @@
 require('dotenv').config()
-const express = require("express");
+var express = require("express");
 
-const PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 8080;
 
-const app = express();
+var app = express();
 
 //set static content for app from the public folder
 app.use(express.static("public"));
