@@ -7,5 +7,12 @@ img {
     display: block;
     max-width: 100%;
     height: auto;
-  }
-  
+};
+
+ul{
+    line-height:200%;
+};
+
+button{
+    margin:20px;    
+}

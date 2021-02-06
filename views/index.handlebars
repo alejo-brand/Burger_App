@@ -3,11 +3,17 @@
     <div class="col-sm-12">
       <img class="mx-auto pt-5" src="/assets/img/burgerCartoon-Img.jpg" alt="Burger Image">
     </div>
-
   </div>
+
+  <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">EAT-DA-BURGER</h1>
+  </div>
+</div>
 
 
   <div class="row devoured">
+    <h2>Burgers I want to eat</h2>
     <div class="col-sm-6">
       <ul>
         {{#each burgers}}
@@ -18,6 +24,7 @@
       </ul>
     </div>
     <div class="col-sm-6 deleteBurger">
+      <h2>burgers Devoured</h2>
       <ul>
         {{#each burgers}}
         {{#if devoured}}
