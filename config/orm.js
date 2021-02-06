@@ -49,7 +49,7 @@ const orm = {
     },
 
     insertOne: function(table,columns,values,cb){
-    let sqlString = "INSERT INTO" + table + "(" + columns.toString() + ")" + "VALUES(" + printQuestionMarks(values.length) +")";
+    let sqlString = "INSERT INTO " + table + "(" + columns.toString() + ")" + "VALUES(" + printQuestionMarks(values.length) +")";
     connection.query(sqlString,values,(err,result)=>{
         if(err) throw err;
             cb(result);
@@ -57,7 +57,7 @@ const orm = {
     },
 
     update:function(table,objColVal,condition,cb){
-        let sqlString = "UPDATE" + table + "SET" + objToSql(objColVal) + "WHERE" + condition;
+        let sqlString = "UPDATE " + table + " " + "SET" + " "+ objToSql(objColVal) + " " + "WHERE " + condition;
         
         connection.query(sqlString,(err,res)=>{
             if(err){
@@ -69,7 +69,7 @@ const orm = {
 
 
     delete:function(table,condition,cb){
-        let sqlString = "DELETE FROM" + table + "WHERE" + condition;
+        let sqlString = "DELETE FROM " + table + " " + "WHERE " + condition;
         connection.query(sqlString,(err,result)=>{
             if(err){
                 throw err;
